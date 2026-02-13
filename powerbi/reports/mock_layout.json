@@ -1,0 +1,35 @@
+{
+  "pages": [
+    {
+      "name": "Overview",
+      "visuals": [
+        {"type": "card", "title": "TRIR"},
+        {"type": "card", "title": "DART"},
+        {"type": "line", "title": "Incident Trend"},
+        {"type": "bar", "title": "Incidents by Region"}
+      ]
+    },
+    {
+      "name": "Incidents",
+      "visuals": [
+        {"type": "line", "title": "Recordables Over Time"},
+        {"type": "matrix", "title": "Site Performance"},
+        {"type": "bar", "title": "Incident Type"}
+      ]
+    },
+    {
+      "name": "Near Miss",
+      "visuals": [
+        {"type": "line", "title": "Near Miss Rate"},
+        {"type": "map", "title": "Near Miss Hotspots"}
+      ]
+    },
+    {
+      "name": "Observations",
+      "visuals": [
+        {"type": "line", "title": "Observation Rate"},
+        {"type": "bar", "title": "Positive vs Negative Observations"}
+      ]
+    }
+  ]
+}
