@@ -1,0 +1,36 @@
+TRIR :=
+DIVIDE(
+    COUNTROWS(FILTER('fact_incidents', 'fact_incidents'[recordable_flag] = TRUE())),
+    SUM('fact_exposure'[hours_worked])
+) * 200000
+
+DART :=
+DIVIDE(
+    COUNTROWS(FILTER('fact_incidents', 'fact_incidents'[dart_flag] = TRUE())),
+    SUM('fact_exposure'[hours_worked])
+) * 200000
+
+Near Miss Rate :=
+DIVIDE(
+    COUNTROWS('fact_near_miss'),
+    SUM('fact_exposure'[hours_worked])
+) * 200000
+
+Observation Rate :=
+DIVIDE(
+    COUNTROWS('fact_safety_observation'),
+    SUM('fact_exposure'[hours_worked])
+) * 200000
+
+Rolling 12M TRIR :=
+VAR EndDate = MAX('dim_date'[calendar_date])
+VAR StartDate = EDATE(EndDate, -12)
+RETURN
+DIVIDE(
+    CALCULATE(COUNTROWS(FILTER('fact_incidents', 'fact_incidents'[recordable_flag] = TRUE())),
+        'dim_date'[calendar_date] >= StartDate && 'dim_date'[calendar_date] <= EndDate
+    ),
+    CALCULATE(SUM('fact_exposure'[hours_worked]),
+        'dim_date'[calendar_date] >= StartDate && 'dim_date'[calendar_date] <= EndDate
+    )
+) * 200000
