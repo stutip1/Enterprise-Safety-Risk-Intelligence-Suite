@@ -1,0 +1,31 @@
+{
+  "model": {
+    "tables": [
+      {"name": "dim_date", "schema": "warehouse"},
+      {"name": "dim_location", "schema": "warehouse"},
+      {"name": "dim_employee", "schema": "warehouse"},
+      {"name": "dim_asset", "schema": "warehouse"},
+      {"name": "dim_incident_type", "schema": "warehouse"},
+      {"name": "dim_weather", "schema": "warehouse"},
+      {"name": "fact_incidents", "schema": "warehouse"},
+      {"name": "fact_near_miss", "schema": "warehouse"},
+      {"name": "fact_safety_observation", "schema": "warehouse"},
+      {"name": "fact_exposure", "schema": "warehouse"},
+      {"name": "mart_trir", "schema": "marts"},
+      {"name": "mart_dart", "schema": "marts"},
+      {"name": "mart_near_miss_rate", "schema": "marts"},
+      {"name": "mart_observation_rate", "schema": "marts"}
+    ],
+    "relationships": [
+      {"from": "fact_incidents", "to": "dim_date", "fromColumn": "date_key", "toColumn": "date_key"},
+      {"from": "fact_incidents", "to": "dim_location", "fromColumn": "location_key", "toColumn": "location_key"},
+      {"from": "fact_incidents", "to": "dim_employee", "fromColumn": "employee_key", "toColumn": "employee_key"},
+      {"from": "fact_near_miss", "to": "dim_date", "fromColumn": "date_key", "toColumn": "date_key"},
+      {"from": "fact_near_miss", "to": "dim_location", "fromColumn": "location_key", "toColumn": "location_key"},
+      {"from": "fact_safety_observation", "to": "dim_date", "fromColumn": "date_key", "toColumn": "date_key"},
+      {"from": "fact_safety_observation", "to": "dim_location", "fromColumn": "location_key", "toColumn": "location_key"},
+      {"from": "fact_exposure", "to": "dim_date", "fromColumn": "date_key", "toColumn": "date_key"},
+      {"from": "fact_exposure", "to": "dim_location", "fromColumn": "location_key", "toColumn": "location_key"}
+    ]
+  }
+}
